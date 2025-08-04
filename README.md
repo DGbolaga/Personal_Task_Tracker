@@ -8,6 +8,12 @@ A minimal and efficient personal task tracker built with **Flask**, intended to 
 
 ---
 
+## 🌐 Live Demo
+🚀 Check out the live version here:
+👉 https://personal-task-tracker-znc1.onrender.com
+
+---
+
 ## 🎯 Project Overview
 
 This project was developed as a final project for NitPy. It allows users to:
@@ -101,15 +107,14 @@ Create a `.env` file in the root directory with:
 SECRET_KEY=your_secret_key_here
 ```
 
-### 5. Initialize the Database
+### 5. (Optional) Initialize the Database
 
-If `data/tasks.db` does not exist, create it by running:
+If data/tasks.db doesn't exist, you can manually initialize it by running:
 
 ```bash
 python src/create_db.py
 ```
-
-You can safely delete `data/tasks.db` anytime to reset the database. Just re-run the script above.
+Note: The app automatically creates the data/ directory and an empty tasks.db file if it’s missing. But you can run this script to reset the DB.
 
 ---
 
