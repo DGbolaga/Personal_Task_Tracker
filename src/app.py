@@ -7,11 +7,32 @@ from datetime import datetime
 
 load_dotenv()
 
+
+# Ensure /data directory exists
+os.makedirs('data', exist_ok=True)
+
+db_path = 'data/tasks.db'
+if not os.path.exists(db_path):
+    open(db_path, 'a').close()  # Creates an empty file
+
+# Create and ensure tasks table exists on app start
+db = SQL(f"sqlite:///{db_path}")
+
+db.execute("""
+    CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        description TEXT NOT NULL,
+        status TEXT DEFAULT 'pending',
+        added_date TEXT NOT NULL,
+        due_date TEXT,
+        priority TEXT DEFAULT 'medium'
+    );
+""")
+print("✅ Database ready.")
+
+# Flask app config
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-
-# CREATE DATABASE.
-db = SQL("sqlite:///data/tasks.db")
 
 
 @app.route('/', methods=['GET', 'POST'])
