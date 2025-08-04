@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Task Tracker - Add Task</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Personal Task Tracker</h1>
+            <p>Stay organized and productive</p>
+        </div>
+        
+        <div class="nav">
+            <a href="{{ url_for('home') }}">Add Task</a>
+            <a href="{{ url_for('show_all_tasks') }}">View All Tasks</a>
+        </div>
+
+        <div class="main-content">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <div class="form-container">
+                <h2 class="form-title">Add New Task</h2>
+                <form method="post" action="{{ url_for('home') }}">
+                    {{ form.hidden_tag() }}
+                    
+                    <div class="form-group">
+                        <label for="description">{{ form.description.label.text }}</label>
+                        {{ form.description(class="form-control", placeholder="e.g., Solve 3 Integration Problems") }}
+                        {% for error in form.description.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">{{ form.status.label.text }}</label>
+                        {{ form.status(class="form-control") }}
+                        {% for error in form.status.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="due_date">{{ form.due_date.label.text }}</label>
+                        {{ form.due_date(class="form-control") }}
+                        {% for error in form.due_date.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="priority">{{ form.priority.label.text }}</label>
+                        {{ form.priority(class="form-control") }}
+                        {% for error in form.priority.errors %}
+                            <div class="error-message">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    
+                    <button type="submit" class="btn">Add Task</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
