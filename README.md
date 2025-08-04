@@ -27,19 +27,20 @@ This project demonstrates the use of form validation, dynamic filtering/sorting,
 
 ```
 Personal_Task_Tracker/
-├── data/               # SQLite database file (auto-generated)
+├── data/                 # SQLite database file (auto-generated)
 │   └── tasks.db
-├── src/                # Core app logic
-│   ├── app.py          # Main Flask application
-│   ├── create_db.py    # Script to initialize the database
-│   ├── forms.py        # Flask-WTF forms
-├── static/             # Styles
+├── src/                  # Core app logic
+│   ├── app.py            # Main Flask application
+│   ├── create_db.py      # Script to initialize the database
+│   ├── forms.py          # Flask-WTF forms
+│   ├── Procfile          # Deployment
+│   ├── requirements.txt  # Dependencies
+├── static/               # Styles
 │   └── styles.css
-├── templates/          # HTML templates
+├── templates/            # HTML templates
 │   ├── index.html
 │   └── tasks.html
-├── requirements.txt    # Dependencies
-└── README.md           # Project documentation
+└── README.md             # Project documentation
 ```
 
 ---
